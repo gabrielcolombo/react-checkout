@@ -1,9 +1,9 @@
 import { HomePage } from './Home';
+import { CheckoutPage } from './Checkout';
 import { NotFoundPage } from './NotFound';
-import { ProductDetailsPage } from './ProductDetails';
 
 export {
   HomePage,
+  CheckoutPage,
   NotFoundPage,
-  ProductDetailsPage,
 }
