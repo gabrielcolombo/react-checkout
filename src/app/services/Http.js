@@ -8,24 +8,26 @@ export default class Http {
         ...headers,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(data),
+      ...(['POST', 'PUT'].includes(method.toUpperCase()))
+        ? { body: JSON.stringify(data) }
+        : {}
     })
     .then(HttpResponse.handle);
   }
 
-  static get(url, data, headers) {
-    return Http.request('GET', url, data, headers);
+  static get(url, data) {
+    return Http.request('GET', url, data);
   }
   
-  static post(url, data, headers) {
-    return Http.request('POST', url, data, headers);
+  static post(url, data) {
+    return Http.request('POST', url, data);
   }
   
   static put(url, data) {
-    return Http.request('PUT', url, data, headers);
+    return Http.request('PUT', url, data);
   }
   
   static delete(url, data) {
-    return Http.request('DELETE', url, data, headers);
+    return Http.request('DELETE', url, data);
   }
 }

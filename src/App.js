@@ -12,6 +12,10 @@ import {
   ProductDetailsPage,
 } from './app/pages';
 
+import {
+  PRODUCT_DETAILS_PAGE_ROUTE
+} from './app/domains/Product/constants/routes';
+
 const App = () => {
   return (
     <Router>
@@ -25,7 +29,7 @@ const App = () => {
         </nav>
 
         <Switch>
-          <Route path="/products/:slug">
+          <Route path={PRODUCT_DETAILS_PAGE_ROUTE}>
             <ProductDetailsPage />
           </Route>
           <Route path="/" exact>
