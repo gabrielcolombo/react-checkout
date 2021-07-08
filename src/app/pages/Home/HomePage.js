@@ -8,23 +8,30 @@ import { useProductsQuery } from '../../domains/Product/hooks';
 
 import { MainLayout } from '../../layouts';
 import {
-  Button,
-  Card,
-  Title,
   Input
 } from '../../components';
+
+import {
+  ProductCard
+} from '../../domains/Product/components';
+
+const findByDescription = (comparison) => ({ description }) => comparison !== ''
+  ? description
+      .toLowerCase()
+      .includes(comparison.toLowerCase())
+  : true;
 
 const HomePage = () => {
   const history = useHistory();
   const Cart = useCart();
+
   const [fetchProducts, { data, loading, error }] = useProductsQuery();
-  
   const [searchQuery, setSearchQuery] = useState('');
-  const findByDescription = (comparison) => ({ description }) => comparison !== ''
-    ? description
-        .toLowerCase()
-        .includes(comparison.toLowerCase())
-    : true;
+
+  const onAddToCart = product => {
+    Cart.add(product);
+    history.push('checkout');
+  }
 
   useEffect(() => {
     Cart.clear();
@@ -52,57 +59,15 @@ const HomePage = () => {
 
             <Row className="px-4 px-lg-0">
               {!data.length
-                ? <span>No products</span>
+                ? <span>No products available</span>
                 : data
                     .filter(findByDescription(searchQuery))
                     .map((product, index) => (
                       <Col sm="6" lg="4" className="mt-4 mb-4" key={`product-${index}`}>
-                        <Card
-                          variant="muted"
-                          cover={product.thumbnailURL}
-                          interactive={true}
-                        >
-                          <Row>
-                            <Col className="text-center">
-                              <Title text={product.description} />
-                            </Col>
-                          </Row>
-
-                          <Row className="mt-2">
-                            <Col xs="6">
-
-                            </Col>
-                            <Col xs="6">
-
-                            </Col>
-                          </Row>
-
-                          <Row className="mt-2">
-                            <Col>
-                              <div className="text-center h5">
-                                <b>$ {product.price}</b>
-                              </div>
-                            </Col>
-                          </Row>
-
-                          <Row>
-                            <Col>
-                              <Button
-                                text="Add to cart"
-                                variant="primary"
-                                block={true}
-                                onClick={() => {
-                                  Cart.add({
-                                    ...product.toObj(),
-                                    amount: 1,
-                                    size: 41,
-                                  });
-                                  history.push('checkout');
-                                }}
-                              />
-                            </Col>
-                          </Row>
-                        </Card>
+                        <ProductCard
+                          product={product}
+                          onAddToCart={onAddToCart}
+                        />
                       </Col>
                   ))
               }
