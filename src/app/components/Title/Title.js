@@ -8,7 +8,7 @@ const Title =  ({
   ...props
 }) => {
   return (
-    <StyledDiv variant={variant} {...props}>
+    <StyledDiv className={`title ${props.className}`} variant={variant} {...props}>
       {text || children}
     </StyledDiv>
   );

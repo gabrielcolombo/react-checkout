@@ -4,6 +4,7 @@ import {
   CART_ADD_PRODUCT,
   CART_UPDATE_PRODUCT,
   CART_DELETE_PRODUCT,
+  CART_CLEAR_PRODUCTS,
   CART_INITIAL_STATE
 } from './constants';
 
@@ -15,6 +16,8 @@ export const cartReducer = (state = CART_INITIAL_STATE, action) => {
       return Cart.updateProduct(action.payload);
     case CART_DELETE_PRODUCT:
       return Cart.deleteProduct(action.payload);
+    case CART_CLEAR_PRODUCTS:
+      return Cart.clearProducts();
     default:
       return state;
   }

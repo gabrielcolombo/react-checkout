@@ -25,6 +25,8 @@ const getVariantStyles = (variant) => {
 
 export const StyledDiv = styled.div`
   color: #000;
+  display: block;
+  width: 100%;
 
   ${({ variant }) => getVariantStyles(variant).mobile};
 

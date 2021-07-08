@@ -33,6 +33,15 @@ export default class Cart {
     }
   }
 
+  static clearProducts() {
+    Cart.#products = [];
+
+    return {
+      products: Cart.products,
+      total: Cart.total,
+    }
+  }
+
   static calculateTotal(products) {
     return products.reduce(
       (total, { price = 0, amount = 0 }) => total + (price * amount), 0

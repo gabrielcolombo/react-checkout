@@ -10,10 +10,7 @@ import {
 const MainLayout = ({ pageTitle, children, ...props }) => {
   return (
     <Fragment>
-      <Header
-        title={pageTitle}
-        thumbnail={Avatar}
-      />
+      <Header title={pageTitle} thumbnail={Avatar} />
       
       <Container>
         {children}

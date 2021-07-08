@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import { Button } from '../Button';
 import { Title } from '../Title';
@@ -12,25 +12,37 @@ import { StyledHeader } from './Header.styles';
 const Header = ({
   title,
   thumbnail,
+  children,
+  ...props
 }) => {
   const history = useHistory();
   const isHomePage = useRouteMatch({ path: '/', exact: true });
 
   return (
-    <StyledHeader>
+    <StyledHeader {...props}>
       <Container>
-        {!isHomePage && (
-          <Button
-            text="Back"
-            round={true}
-            icon={faArrowLeft}
-            onClick={history.goBack}
-          />
+        {children || (
+          <Fragment>
+            <Row className="align-items-center">
+              <Col xs="4">
+                {!isHomePage && (
+                  <Button
+                    text="Back"
+                    round={true}
+                    icon={faArrowLeft}
+                    onClick={history.goBack}
+                  />
+                )}
+              </Col>
+              <Col xs="4" className="text-center">
+                <Title text={title} className="d-none d-lg-block"/>
+              </Col>
+              <Col xs="4" className="d-flex justify-content-end">
+                <Thumbnail image={thumbnail} />
+              </Col>
+            </Row>
+          </Fragment>
         )}
-
-        <Title text={title} />
-
-        <Thumbnail image={thumbnail} />
       </Container>
     </StyledHeader>
   )

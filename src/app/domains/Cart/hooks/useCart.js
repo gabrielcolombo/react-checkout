@@ -3,7 +3,8 @@ import { store } from './../../../store';
 import {
   addProductToCart,
   updateCartProduct,
-  deleteCartProduct
+  deleteCartProduct,
+  clearCartProducts,
 } from '../store/actions';
 
 const useCart = (props) => {
@@ -12,6 +13,7 @@ const useCart = (props) => {
     add: (product) => store.dispatch(addProductToCart(product)),
     update: (product) => store.dispatch(updateCartProduct(product)),
     delete: (product) => store.dispatch(deleteCartProduct(product)),
+    clear: (product) => store.dispatch(clearCartProducts()),
   }  
 }
 

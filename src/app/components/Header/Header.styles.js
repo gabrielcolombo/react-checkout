@@ -4,13 +4,10 @@ export const StyledHeader = styled.header`
   background: #fff;
 
   .container {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 15px;
   }
 
-  @media all and (min-width: 1024px) {
+  @media all and (min-width: 992px) {
     background: #f6f6f6;
   }
 `;
