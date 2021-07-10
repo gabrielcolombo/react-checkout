@@ -1,13 +1,11 @@
 import React, { useState, Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import {
   Button,
   Card,
   Title,
-} from '../../../../../components';
+} from '../../../../components';
 
 import { PaymentMethods } from '../PaymentMethods';
 
@@ -17,6 +15,7 @@ import {
 
 const CheckoutDesktop = ({
   product,
+  total,
   paymentMethod,
   onPaymentMethodChange,
   onProductRemove,
@@ -55,7 +54,7 @@ const CheckoutDesktop = ({
                   </Col>
 
                   <Col>
-                    <StyledPrice>${product.price * product.quantity}</StyledPrice>
+                    <StyledPrice>${Number(total).toFixed(0)}</StyledPrice>
                   </Col>
                 </Row>
               </Col>
@@ -83,7 +82,7 @@ const CheckoutDesktop = ({
             block={true}
             onClick={() => onConfirm({
               currency: product.currency,
-              amount: (product.price * product.quantity).toFixed(2),
+              amount: total,
             })}
           />
         </Col>

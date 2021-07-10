@@ -46,7 +46,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
       <Row className="mt-4 mb-2">
         <Col className="text-center">
-          <h4>$ {product.price}</h4>
+          <h4>$ {Number(product.price).toFixed(0)}</h4>
         </Col>
       </Row>
 

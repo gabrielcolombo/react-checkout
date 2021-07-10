@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from 'react-router-dom';
 
 import {
@@ -15,15 +14,20 @@ import {
 import {
   CHECKOUT_PAGE_ROUTE
 } from './app/domains/Product/constants/routes';
-import { usePaymentTransaction  } from './app/domains/Cart/hooks';
+
+import { CheckoutStagesEnum } from './app/domains/Checkout/enums';
+import { useCheckout, usePaymentTransaction  } from './app/domains/Checkout/hooks';
 
 const App = () => {
+  const Checkout = useCheckout();
   const PaymentTransaction = usePaymentTransaction();
 
   useEffect(() => {
     PaymentTransaction.initPaymentStatusHandler({
-      onSuccess: () => alert('success'),
-      onFailure: () => alert('failure'),
+      onSuccess: () => {
+        Checkout.updateStage(CheckoutStagesEnum.receipt);
+      },
+      onFailure: () => Checkout.updateStage(CheckoutStagesEnum.failure),
     });
   }, []);
 

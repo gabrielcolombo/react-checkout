@@ -7,7 +7,7 @@ import {
   Button,
   Card,
   Title,
-} from '../../../../../components';
+} from '../../../../components';
 
 import { PaymentMethods } from '../PaymentMethods';
 
@@ -16,6 +16,7 @@ import { StyledPrice } from '../Checkout.styles';
 
 const CheckoutMobile = ({
   product,
+  total,
   paymentMethod,
   onPaymentMethodChange,
   onProductRemove,
@@ -68,7 +69,7 @@ const CheckoutMobile = ({
               </Col>
 
               <Col>
-                <StyledPrice>${product.price * product.quantity}</StyledPrice>
+                <StyledPrice>${Number(total).toFixed(0)}</StyledPrice>
               </Col>
             </Row>
           </Card>
@@ -101,7 +102,7 @@ const CheckoutMobile = ({
             block={true}
             onClick={() => onConfirm({
               currency: product.currency,
-              amount: (product.price * product.quantity).toFixed(2),
+              amount: total,
             })}
           />
         </Col>

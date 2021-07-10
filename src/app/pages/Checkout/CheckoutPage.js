@@ -2,8 +2,9 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-import { useCart, usePaymentTransaction } from '../../domains/Cart/hooks';
-import { PaymentMethodsEnum } from '../../enums';
+import { useCart } from '../../domains/Cart/hooks';
+import { CheckoutStagesEnum, PaymentMethodsEnum } from '../../domains/Checkout/enums';
+import { useCheckout, usePaymentTransaction } from '../../domains/Checkout/hooks';
 
 import { MainLayout } from '../../layouts';
 import {
@@ -14,15 +15,26 @@ import {
 import {
   CheckoutDesktop,
   CheckoutMobile,
-} from '../../domains/Cart/components/Checkout';
+} from '../../domains/Checkout/components';
 
 const CheckoutPage = () => {
   const Cart = useCart();
+  const Checkout = useCheckout();
   const PaymentTransaction = usePaymentTransaction();
   const history = useHistory();
 
   const [paymentMethod, setPaymentMethod] = useState(PaymentMethodsEnum.onlineBanking);
-  const [{ products, total }, setState] = useState(Cart.getState());
+  
+  const { stage } = Checkout.getState();
+  const { products, total } = Cart.getState();
+
+  useEffect(() => Checkout.updateStage(CheckoutStagesEnum.paymentOptions), []);
+  
+  useEffect(() => {
+    if (stage === 'RECEIPT') {
+      alert('YEA')
+    }
+  }, [stage]);
 
   return (
     <MainLayout pageTitle="Checkout">
@@ -42,6 +54,7 @@ const CheckoutPage = () => {
             <Col className="d-block d-lg-none">
               <CheckoutMobile
                 product={products[0]}
+                total={total}
                 onProductRemove={() => history.push('/')}
                 paymentMethod={paymentMethod}
                 onPaymentMethodChange={setPaymentMethod}
@@ -52,6 +65,7 @@ const CheckoutPage = () => {
             <Col className="d-none d-lg-block">
               <CheckoutDesktop
                 product={products[0]}
+                total={total}
                 onProductRemove={() => history.push('/')}
                 paymentMethod={paymentMethod}
                 onPaymentMethodChange={setPaymentMethod}

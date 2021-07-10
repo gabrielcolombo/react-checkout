@@ -30,7 +30,7 @@ const Header = ({
                     text="Back"
                     round={true}
                     icon={faArrowLeft}
-                    onClick={history.goBack}
+                    onClick={() => history.push('/')}
                   />
                 )}
               </Col>

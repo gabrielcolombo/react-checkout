@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Row, Col, Spinner } from 'react-bootstrap';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import useCart from '../../domains/Cart/hooks/useCart';
+import { useCart } from '../../domains/Cart/hooks';
 import { useProductsQuery } from '../../domains/Product/hooks';
 
 import { MainLayout } from '../../layouts';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PaymentMethodsEnum } from '../../../../../enums';
+import { PaymentMethodsEnum } from '../../enums';
 import { StyledUl, StyledLi, StyledDiv } from './PaymentMethods.styles';
 
 const PaymentMethods = ({ method, onChange }) => {

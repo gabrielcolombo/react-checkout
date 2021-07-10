@@ -6,7 +6,7 @@ export default class Product extends BaseModel {
 
     this.description = product.description;
     this.color = product.color;
-    this.price = Number(product.price).toFixed(2);
+    this.price = product.price;
     this.currency = product.currency;
     this.thumbnailURL = product.thumbnailURL;
     this.maxresURL = product.maxresURL;

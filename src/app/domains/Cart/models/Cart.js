@@ -43,8 +43,9 @@ export default class Cart {
   }
 
   static calculateTotal(products) {
-    return products.reduce(
-      (total, { price = 0, amount = 0 }) => total + (price * amount), 0
-    );
+    return Number(
+      products.reduce((total, { price = 0, quantity = 0 }) => total + (price * quantity), 0)
+    )
+      .toFixed(2);
   }
 }
