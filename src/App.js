@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,8 +15,18 @@ import {
 import {
   CHECKOUT_PAGE_ROUTE
 } from './app/domains/Product/constants/routes';
+import { usePaymentTransaction  } from './app/domains/Cart/hooks';
 
 const App = () => {
+  const PaymentTransaction = usePaymentTransaction();
+
+  useEffect(() => {
+    PaymentTransaction.initPaymentStatusHandler({
+      onSuccess: () => alert('success'),
+      onFailure: () => alert('failure'),
+    });
+  }, []);
+
   return (
     <Router>
       <Switch>

@@ -19,6 +19,7 @@ const CheckoutMobile = ({
   paymentMethod,
   onPaymentMethodChange,
   onProductRemove,
+  onConfirm
 }) => {
   return (
     <Fragment>
@@ -98,7 +99,10 @@ const CheckoutMobile = ({
             text="Continue"
             variant="primary"
             block={true}
-            onClick={() => {}}
+            onClick={() => onConfirm({
+              currency: product.currency,
+              amount: (product.price * product.quantity).toFixed(2),
+            })}
           />
         </Col>
       </Row>

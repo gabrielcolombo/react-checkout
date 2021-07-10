@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-import useCart from '../../domains/Cart/hooks/useCart';
+import { useCart, usePaymentTransaction } from '../../domains/Cart/hooks';
 import { PaymentMethodsEnum } from '../../enums';
 
 import { MainLayout } from '../../layouts';
@@ -18,6 +18,7 @@ import {
 
 const CheckoutPage = () => {
   const Cart = useCart();
+  const PaymentTransaction = usePaymentTransaction();
   const history = useHistory();
 
   const [paymentMethod, setPaymentMethod] = useState(PaymentMethodsEnum.onlineBanking);
@@ -44,6 +45,7 @@ const CheckoutPage = () => {
                 onProductRemove={() => history.push('/')}
                 paymentMethod={paymentMethod}
                 onPaymentMethodChange={setPaymentMethod}
+                onConfirm={PaymentTransaction.establish}
               />
             </Col>
 
@@ -53,6 +55,7 @@ const CheckoutPage = () => {
                 onProductRemove={() => history.push('/')}
                 paymentMethod={paymentMethod}
                 onPaymentMethodChange={setPaymentMethod}
+                onConfirm={PaymentTransaction.establish}
               />
             </Col>
           </Row>
