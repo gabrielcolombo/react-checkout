@@ -22,6 +22,7 @@ export default class Product extends BaseModel {
 
   toObj() {
     return {
+      id: this.id,
       description: this.description,
       color: this.color,
       price: this.price,

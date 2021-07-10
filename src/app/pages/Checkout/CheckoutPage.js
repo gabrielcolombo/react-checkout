@@ -3,6 +3,7 @@ import { Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 import useCart from '../../domains/Cart/hooks/useCart';
+import { PaymentMethodsEnum } from '../../enums';
 
 import { MainLayout } from '../../layouts';
 import {
@@ -18,7 +19,8 @@ import {
 const CheckoutPage = () => {
   const Cart = useCart();
   const history = useHistory();
-  
+
+  const [paymentMethod, setPaymentMethod] = useState(PaymentMethodsEnum.onlineBanking);
   const [{ products, total }, setState] = useState(Cart.getState());
 
   return (
@@ -36,17 +38,21 @@ const CheckoutPage = () => {
             </Col>
           </Row>
         : <Row className="mt-2 mt-lg-4">
-            <Col className="d-flex d-lg-none">
+            <Col className="d-block d-lg-none">
               <CheckoutMobile
                 product={products[0]}
                 onProductRemove={() => history.push('/')}
+                paymentMethod={paymentMethod}
+                onPaymentMethodChange={setPaymentMethod}
               />
             </Col>
 
-            <Col className="d-none d-lg-flex">
+            <Col className="d-none d-lg-block">
               <CheckoutDesktop
                 product={products[0]}
                 onProductRemove={() => history.push('/')}
+                paymentMethod={paymentMethod}
+                onPaymentMethodChange={setPaymentMethod}
               />
             </Col>
           </Row>

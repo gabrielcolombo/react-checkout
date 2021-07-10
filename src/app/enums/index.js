@@ -1,5 +1,7 @@
-import StatusCodes from './StatusCodes';
+import StatusCodesEnum from './StatusCodes';
+import PaymentMethodsEnum from './PaymentMethods';
 
 export {
-  StatusCodes,
+  PaymentMethodsEnum,
+  StatusCodesEnum,
 };

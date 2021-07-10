@@ -2,14 +2,20 @@ import styled from 'styled-components';
 import { Card } from 'react-bootstrap';
 
 const VARIANTS = {
-  default: '#fff',
-  muted: '#f7f7f7'
+  default: {
+    background: '#fff',
+    boxShadow: '0 6px 16px rgba(0, 0, 0, .05)',
+  },
+  muted: {
+    background: '#f7f7f7',
+    boxShadow: 'none',
+  }
 }
 
 export const StyledCard = styled(Card)`
-  background: ${({ variant }) => VARIANTS[variant] || VARIANTS.default};
+  background: ${({ variant }) => (VARIANTS[variant] || VARIANTS.default).background};
   border: none;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, .05);
+  box-shadow: ${({ variant }) => (VARIANTS[variant] || VARIANTS.default).boxShadow};
   width: 100%;
   
   &:hover {

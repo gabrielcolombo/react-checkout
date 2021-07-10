@@ -13,7 +13,6 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <Card
-      variant="muted"
       cover={product.thumbnailURL}
       interactive={true}
     >
