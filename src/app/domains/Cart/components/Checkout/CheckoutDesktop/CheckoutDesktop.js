@@ -75,7 +75,7 @@ const CheckoutDesktop = ({
       </Row>
 
       <Row className="mt-4">
-        <Col lg={{ span: 6, offset: 6 }}>
+        <Col lg={{ span: 3, offset: 9 }}>
           <Button
             text="Continue"
             variant="primary"

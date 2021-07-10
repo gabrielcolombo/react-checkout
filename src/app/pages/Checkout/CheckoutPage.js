@@ -32,7 +32,7 @@ const CheckoutPage = () => {
       </Row>
 
       {!products.length
-        ? <Row>
+        ? <Row className="mt-4">
             <Col>
               <Card variant="muted">Your cart is empty</Card>
             </Col>

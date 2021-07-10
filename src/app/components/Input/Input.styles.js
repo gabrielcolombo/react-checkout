@@ -22,7 +22,7 @@ export const StyledInputIcon = styled(InputGroup.Text)`
   padding: 10px 15px;
 
   @media all and (min-width: 992px) {
-    padding: 15px 30px;
+    padding: 11px 30px;
   }
 `;
 
