@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import {
   Button,
   Card,
+  Select,
   Title,
 } from '../../../../components';
 
@@ -22,20 +23,30 @@ const ProductCard = ({ product, onAddToCart }) => {
         </Col>
       </Row>
 
-      <Row className="mt-2">
+      <Row className="my-3">
         <Col xs="6">
-
+          <Select
+            label="Size"
+            options={new Array(10).fill(null).map((item, index) => 35 + index)}
+            value={size}
+            inline={true}
+            onChange={setSize}
+          />
         </Col>
         <Col xs="6">
-
+          <Select
+            label="Quantity"
+            options={new Array(10).fill(null).map((item, index) => 1 + index)}
+            value={quantity}
+            inline={true}
+            onChange={setQuantity}
+          />
         </Col>
       </Row>
 
-      <Row className="mt-2">
-        <Col>
-          <div className="text-center h5">
-            <b>$ {product.price}</b>
-          </div>
+      <Row className="mt-4 mb-2">
+        <Col className="text-center">
+          <h4>$ {product.price}</h4>
         </Col>
       </Row>
 
