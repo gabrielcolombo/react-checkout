@@ -22,19 +22,21 @@ const CheckoutPage = () => {
   const Checkout = useCheckout();
   const PaymentTransaction = usePaymentTransaction();
   const history = useHistory();
-
   const [paymentMethod, setPaymentMethod] = useState(PaymentMethodsEnum.onlineBanking);
   
-  const { stage } = Checkout.getState();
   const { products, total } = Cart.getState();
-
-  useEffect(() => Checkout.updateStage(CheckoutStagesEnum.paymentOptions), []);
   
-  useEffect(() => {
-    if (stage === 'RECEIPT') {
-      alert('YEA')
+  const onCheckoutStageChange = () => {
+    if (Checkout.getState().stage === 'RECEIPT') {
+      alert('Success');
     }
-  }, [stage]);
+  };
+
+  useEffect(() => {
+    Checkout.updateStage(CheckoutStagesEnum.paymentOptions);
+    
+    return Checkout.subscribe(onCheckoutStageChange);
+  }, []);
 
   return (
     <MainLayout pageTitle="Checkout">

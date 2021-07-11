@@ -3,10 +3,11 @@ import {
   updateCheckoutStage,
 } from '../store/actions';
 
-const useCheckout = (props) => {
+const useCheckout = () => {
   return {
     getState: () => store.getState().checkout,
     updateStage: (stage) => store.dispatch(updateCheckoutStage(stage)),
+    subscribe: (callback) => store.subscribe(callback) 
   }  
 }
 
