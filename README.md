@@ -1,4 +1,4 @@
-# Vue Bookstore
+# React Checkout
 
 A storefrontend app made with React, Redux, styled-components and Trustly's payment API.
 
