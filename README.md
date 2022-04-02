@@ -2,7 +2,7 @@
 
 A storefrontend app made with React, Redux, styled-components and Trustly's payment API.
 
-![A storefrontend app made with React by Gabriel Colombo](thumbnail.png)]
+![A storefrontend app made with React by Gabriel Colombo](thumbnail.png)
 
 ## Environment setup
 
